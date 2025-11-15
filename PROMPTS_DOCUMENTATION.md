@@ -144,3 +144,116 @@ I don't know.
 **File Location:** `/app/src/main/res/values/strings.xml:213`
 
 ---
+
+## 3. Skill Discovery Prompts (Metric Queries)
+
+These are pre-defined query prompts that help users discover SUSI's capabilities and skills. They are displayed as clickable suggestions in the skills browsing interface to help users explore different skill categories.
+
+### 3.1 Highest Rated Skills Query
+
+**Purpose:** Example query to help users discover the top-rated skills available in SUSI.
+
+**Usage Context:**
+- Displayed as a suggested query in the skills section
+- When clicked or spoken, it triggers a search for highest rated skills
+- Used in `SkillListingPresenter.kt` for UI display
+
+**Prompt:**
+```
+SUSI, What are your highest rated skills?
+```
+
+**Resource ID:** `metric_rating`
+**File Location:** `/app/src/main/res/values/strings.xml:487`
+
+---
+
+### 3.2 Most Used Skills Query
+
+**Purpose:** Example query to help users discover the most popular skills based on usage statistics.
+
+**Usage Context:**
+- Displayed as a suggested query in the skills section
+- Helps users find skills that are frequently used by the community
+
+**Prompt:**
+```
+SUSI, what are your most used skills?
+```
+
+**Resource ID:** `metric_usage`
+**File Location:** `/app/src/main/res/values/strings.xml:488`
+
+---
+
+### 3.3 Recently Updated Skills Query
+
+**Purpose:** Example query to help users discover skills that have been recently updated or improved.
+
+**Usage Context:**
+- Displayed as a suggested query in the skills section
+- Helps users find the latest improvements and updates
+
+**Prompt:**
+```
+SUSI, what are the recently updated skills?
+```
+
+**Resource ID:** `metric_latest`
+**File Location:** `/app/src/main/res/values/strings.xml:489`
+
+---
+
+### 3.4 Skills with Most Feedback Query
+
+**Purpose:** Example query to help users discover skills that have received the most user feedback.
+
+**Usage Context:**
+- Displayed as a suggested query in the skills section
+- Helps users find skills that are actively discussed and reviewed
+
+**Prompt:**
+```
+SUSI, what are the skills with most feedback?
+```
+
+**Resource ID:** `metric_feedback`
+**File Location:** `/app/src/main/res/values/strings.xml:490`
+
+---
+
+### 3.5 Newest Skills Query
+
+**Purpose:** Example query to help users discover the newest skills added to SUSI.
+
+**Usage Context:**
+- Displayed as a suggested query in the skills section
+- Helps users explore recently added functionality
+
+**Prompt:**
+```
+SUSI, what are the newest skills?
+```
+
+**Resource ID:** `metric_newest`
+**File Location:** `/app/src/main/res/values/strings.xml:491`
+
+---
+
+### 3.6 Top Games Query
+
+**Purpose:** Example query to help users discover gaming skills available in SUSI.
+
+**Usage Context:**
+- Displayed as a suggested query in the skills section
+- Specifically targets entertainment and gaming capabilities
+
+**Prompt:**
+```
+SUSI, what are your top games?
+```
+
+**Resource ID:** `metrics_top_games`
+**File Location:** `/app/src/main/res/values/strings.xml:492`
+
+---

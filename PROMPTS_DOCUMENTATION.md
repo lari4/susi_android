@@ -538,3 +538,217 @@ Nothing below matching your query
 **File Location:** `/app/src/main/res/values/strings.xml:69`
 
 ---
+
+## 6. Device Setup Prompts
+
+These prompts guide users through the process of setting up SUSI.AI smart speaker devices. The setup process involves connecting to the device's Wi-Fi hotspot, configuring home Wi-Fi credentials, and linking to a SUSI account.
+
+### 6.1 Device Setup Tutorial
+
+**Purpose:** Initial instructions for setting up a new SUSI.AI device.
+
+**Usage Context:**
+- Displayed when user hasn't connected any devices yet
+- Provides guidance before starting setup
+
+**Prompt:**
+```
+If you're setting up a new device, make sure it's
+ nearby and plugged into a wall outlet
+```
+
+**Resource ID:** `setup_tut`
+**File Location:** `/app/src/main/res/values/strings.xml:315`
+
+---
+
+### 6.2 Connection Instructions
+
+**Purpose:** Detailed step-by-step instructions for connecting to SUSI.AI device.
+
+**Usage Context:**
+- Shown during the initial connection step of device setup
+- Guides users through connecting their phone to the device's hotspot
+
+**Prompt:**
+```
+To start the configuration process, plug in your SUSI.AI smart device and wait for the "Ping" sound. The SUSI.AI device will automatically open a Wi-Fi hotspot. Please connect your phone to the wireless network with the name "SUSI.AI".
+```
+
+**Resource ID:** `connect_to_susi`
+**File Location:** `/app/src/main/res/values/strings.xml:333`
+
+---
+
+### 6.3 Connection Troubleshooting
+
+**Purpose:** Help users when they cannot connect to the SUSI.AI hotspot.
+
+**Usage Context:**
+- Displayed when user taps "I cannot connect" button
+- Provides troubleshooting guidance
+
+**Prompt:**
+```
+Please check that your SUSI.AI smart device is plugged in and the latest SUSI.AI software is installed. Ensure you are disconnected from other Wi-Fi networks.
+```
+
+**Resource ID:** `cannot_connect_details`
+**File Location:** `/app/src/main/res/values/strings.xml:336`
+
+---
+
+### 6.4 Wi-Fi Setup Help
+
+**Purpose:** Instructions when no Wi-Fi networks are found during setup.
+
+**Usage Context:**
+- Displayed when Wi-Fi scanning returns no results
+- Helps users troubleshoot Wi-Fi availability issues
+
+**Prompt:**
+```
+Make sure there are Wi-Fi connections available
+ near you.
+```
+
+**Resource ID:** `setup_wifi`
+**File Location:** `/app/src/main/res/values/strings.xml:317`
+
+---
+
+### 6.5 Device Help Instructions
+
+**Purpose:** Instructions for entering Wi-Fi credentials for the device.
+
+**Usage Context:**
+- Displayed during Wi-Fi configuration step
+- Explains how to provide home network credentials
+
+**Prompt:**
+```
+Choose your WiFi home network from the list below and enter the password of your network. Leave blank for networks without a password.
+```
+
+**Resource ID:** `device_help`
+**File Location:** `/app/src/main/res/values/strings.xml:454`
+
+---
+
+### 6.6 Anonymous Mode Warning
+
+**Purpose:** Explains the limitations of using anonymous mode without account linkage.
+
+**Usage Context:**
+- Displayed when user chooses anonymous mode during setup
+- Warns about functionality limitations
+
+**Prompt:**
+```
+If you do not link the SUSI.AI smart device with an online account, you will not be able to reconfigure your speaker with the mobile app afterwards and add personal skills of services like music providers. To change anything you will need a hard reset of the device.
+```
+
+**Resource ID:** `anonymous_details`
+**File Location:** `/app/src/main/res/values/strings.xml:343`
+
+---
+
+### 6.7 Final Setup Instructions
+
+**Purpose:** Explains what happens when finishing the setup process.
+
+**Usage Context:**
+- Displayed when user is about to complete setup
+- Sets expectations for final configuration steps
+
+**Prompt:**
+```
+The SUSI.AI smart device will now shut down the hotspot and connect with your Wi-Fi home network and online account. If SUSI.AI is not able to connect to your home Wi-Fi network after 3 times, it will restart the SUSI.AI hotspot again and you can start the setup process again. If SUSI.AI connects successfully with the Internet and your account, it will show up in your list of connected devices and you can continue to configure its settings.
+```
+
+**Resource ID:** `finish_setup_details`
+**File Location:** `/app/src/main/res/values/strings.xml:347`
+
+---
+
+### 6.8 Successful Setup Message (With Account)
+
+**Purpose:** Success message when device is configured with an account.
+
+**Usage Context:**
+- Displayed after successful setup completion with account linkage
+- Guides user on next steps
+
+**Prompt:**
+```
+You have configured a SUSI.AI smart device. Please wait a moment to check if the process was successful and go to the list of "Smart Devices" in your settings to check and continue to configure your device settings. Please connect your phone with the Internet now.
+```
+
+**Resource ID:** `succesfully_setup`
+**File Location:** `/app/src/main/res/values/strings.xml:350`
+
+---
+
+### 6.9 Successful Setup Message (Anonymous)
+
+**Purpose:** Success message when device is configured in anonymous mode.
+
+**Usage Context:**
+- Displayed after successful setup completion without account linkage
+- Simpler message for anonymous mode
+
+**Prompt:**
+```
+You have configured a SUSI.AI smart device in anonymous mode. Please wait a moment to check if the process was successful. Please connect your phone with the Internet now.
+```
+
+**Resource ID:** `success_setup_anonymous`
+**File Location:** `/app/src/main/res/values/strings.xml:351`
+
+---
+
+### 6.10 Status Messages
+
+Various status messages during the setup process:
+
+#### Scanning for Devices
+**Prompt:** `Scanning for devices...`
+**Resource ID:** `scan_devices` | **Location:** `/app/src/main/res/values/strings.xml:313`
+
+#### No Devices Found
+**Prompt:** `No devices found`
+**Resource ID:** `no_device_found` | **Location:** `/app/src/main/res/values/strings.xml:314`
+
+#### Scanning for Wi-Fi
+**Prompt:** `Scanning for available Wi-Fi's`
+**Resource ID:** `scan_available_wifi` | **Location:** `/app/src/main/res/values/strings.xml:339`
+
+#### No Wi-Fi Found
+**Prompt:** `No Wi-Fi-Networks found`
+**Resource ID:** `no_wifi_found` | **Location:** `/app/src/main/res/values/strings.xml:316`
+
+#### Device Setting Up
+**Prompt:** `Setting up your device`
+**Resource ID:** `device_setting_up` | **Location:** `/app/src/main/res/values/strings.xml:324`
+
+#### Connecting to Wi-Fi
+**Prompt:** `Connecting to your wifi...`
+**Resource ID:** `connecting_device` | **Location:** `/app/src/main/res/values/strings.xml:455`
+
+#### Connection Success
+**Prompt:** `Connected Successfully !`
+**Resource ID:** `connection_success` | **Location:** `/app/src/main/res/values/strings.xml:457`
+
+#### Device Connected
+**Prompt:** `Device Connected successfully!`
+**Resource ID:** `connect_success` | **Location:** `/app/src/main/res/values/strings.xml:304`
+
+#### Wi-Fi Credentials Sent
+**Prompt:** `Wi-Fi credentials sent successfully!`
+**Resource ID:** `wifi_success` | **Location:** `/app/src/main/res/values/strings.xml:306`
+
+#### Authentication Credentials Sent
+**Prompt:** `Authentication credentials sent successfully!`
+**Resource ID:** `auth_success` | **Location:** `/app/src/main/res/values/strings.xml:305`
+
+---

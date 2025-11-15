@@ -84,3 +84,63 @@ Tap the mic icon to speak
 **File Location:** `/app/src/main/res/values/strings.xml:129`
 
 ---
+
+## 2. User Input Prompts
+
+These prompts guide users on how to interact with SUSI through text chat.
+
+### 2.1 Chat Input Hint
+
+**Purpose:** Placeholder text in the main chat input field that prompts users to ask SUSI a question.
+
+**Usage Context:**
+- Displayed in the text input field of the main chat interface
+- Encourages users to interact with SUSI
+- Provides context about what users can do
+
+**Prompt:**
+```
+Ask SUSI something…
+```
+
+**Resource ID:** `send_msg_hint`
+**File Location:** `/app/src/main/res/values/strings.xml:84`
+
+---
+
+### 2.2 Help Offer
+
+**Purpose:** A friendly prompt asking how SUSI can assist the user.
+
+**Usage Context:**
+- Used in various UI contexts where SUSI offers help
+- General assistance prompt
+
+**Prompt:**
+```
+How can I help you?
+```
+
+**Resource ID:** `how_can_i_help`
+**File Location:** `/app/src/main/res/values/strings.xml:388`
+
+---
+
+### 2.3 Unknown Answer Response
+
+**Purpose:** Default response when SUSI doesn't know how to answer a question or when there's no server response available.
+
+**Usage Context:**
+- Fallback response for unrecognized queries
+- Displayed when the AI cannot provide a meaningful answer
+- Used as a client-side placeholder when server communication fails
+
+**Prompt:**
+```
+I don't know.
+```
+
+**Resource ID:** `unknown_answer`
+**File Location:** `/app/src/main/res/values/strings.xml:213`
+
+---

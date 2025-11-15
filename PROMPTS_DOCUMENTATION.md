@@ -334,3 +334,207 @@ Who is the president of India?
 **File Location:** `/app/src/main/res/values/array.xml:40-48`
 
 ---
+
+## 5. Error Handling Prompts
+
+These prompts inform users about errors and problems that occur during interaction with SUSI.
+
+### 5.1 General Error Message
+
+**Purpose:** Generic error message displayed when an unexpected error occurs.
+
+**Usage Context:**
+- Displayed when API calls fail
+- Shown when unexpected errors occur during operation
+- General fallback error message
+
+**Prompt:**
+```
+An error occurred. please try again.
+```
+
+**Resource ID:** `error_occurred_try_again`
+**File Location:** `/app/src/main/res/values/strings.xml:142`
+
+---
+
+### 5.2 Internet Connectivity Error
+
+**Purpose:** Informs users that there's a problem with their internet connection.
+
+**Usage Context:**
+- Displayed when the app cannot reach the SUSI server
+- Shown when network requests fail due to connectivity issues
+- Helps users understand they need to check their internet connection
+
+**Prompt:**
+```
+Internet Connectivity Problem.
+```
+
+**Resource ID:** `error_internet_connectivity`
+**File Location:** `/app/src/main/res/values/strings.xml:140`
+
+---
+
+### 5.3 No Internet Connection
+
+**Purpose:** Alternative message for internet connectivity problems.
+
+**Usage Context:**
+- More explicit message about lack of internet connection
+- Used in different contexts from the connectivity problem message
+
+**Prompt:**
+```
+Internet Connection Not Available.
+```
+
+**Resource ID:** `no_internet_connection`
+**File Location:** `/app/src/main/res/values/strings.xml:65`
+
+---
+
+### 5.4 Hotword Detection Error
+
+**Purpose:** Informs users that hotword detection (wake word "SUSI") is not supported on their device.
+
+**Usage Context:**
+- Displayed when device hardware/software doesn't support hotword detection
+- Shown when trying to enable hotword detection on incompatible devices
+
+**Prompt:**
+```
+Sorry, hotword detection is not supported on your device.
+```
+
+**Resource ID:** `error_hotword`
+**File Location:** `/app/src/main/res/values/strings.xml:139`
+
+---
+
+### 5.5 Hotword Detected Success
+
+**Purpose:** Confirmation message when the hotword "SUSI" is successfully detected.
+
+**Usage Context:**
+- Displayed when the wake word is recognized
+- Provides feedback that voice interaction is starting
+
+**Prompt:**
+```
+Hotword detected
+```
+
+**Resource ID:** `hotword_success`
+**File Location:** `/app/src/main/res/values/strings.xml:42`
+
+---
+
+### 5.6 Voice Search Not Supported
+
+**Purpose:** Informs users that their device doesn't support voice actions.
+
+**Usage Context:**
+- Displayed when device lacks voice recognition capabilities
+- Shown when trying to use voice features on incompatible devices
+
+**Prompt:**
+```
+Sorry, your device does not support voice actions.
+```
+
+**Resource ID:** `error_voice_search`
+**File Location:** `/app/src/main/res/values/strings.xml:150`
+
+---
+
+### 5.7 Speech Not Supported
+
+**Purpose:** Informs users that their device doesn't support speech input.
+
+**Usage Context:**
+- Displayed when device lacks speech recognition hardware/software
+- Alternative to voice search error for speech input specifically
+
+**Prompt:**
+```
+Sorry, your device doesn't support speech input
+```
+
+**Resource ID:** `speech_not_supported`
+**File Location:** `/app/src/main/res/values/strings.xml:127`
+
+---
+
+### 5.8 Voice Chat Search Error
+
+**Purpose:** Error message for failures during voice-based search in chat.
+
+**Usage Context:**
+- Displayed when voice search within chat history fails
+- Specific to voice search functionality errors
+
+**Prompt:**
+```
+Error occured while doing voice search.
+```
+
+**Resource ID:** `error_voice_chat_search`
+**File Location:** `/app/src/main/res/values/strings.xml:151`
+
+---
+
+### 5.9 Chat Search Not Found
+
+**Purpose:** Informs users that their search query didn't match any messages.
+
+**Usage Context:**
+- Displayed when searching chat history returns no results
+- Helps users understand their search term wasn't found
+
+**Prompt:**
+```
+Search Not Found
+```
+
+**Resource ID:** `chat_search_status`
+**File Location:** `/app/src/main/res/values/strings.xml:43`
+
+---
+
+### 5.10 No Search Results (Upward Search)
+
+**Purpose:** Message when searching upward in chat finds no matches.
+
+**Usage Context:**
+- Displayed when user searches above current position in chat
+- Indicates no matching messages exist above
+
+**Prompt:**
+```
+Nothing above matching your query
+```
+
+**Resource ID:** `nothing_up_matches_your_query`
+**File Location:** `/app/src/main/res/values/strings.xml:70`
+
+---
+
+### 5.11 No Search Results (Downward Search)
+
+**Purpose:** Message when searching downward in chat finds no matches.
+
+**Usage Context:**
+- Displayed when user searches below current position in chat
+- Indicates no matching messages exist below
+
+**Prompt:**
+```
+Nothing below matching your query
+```
+
+**Resource ID:** `nothing_down_matches_your_query`
+**File Location:** `/app/src/main/res/values/strings.xml:69`
+
+---

@@ -752,3 +752,281 @@ Various status messages during the setup process:
 **Resource ID:** `auth_success` | **Location:** `/app/src/main/res/values/strings.xml:305`
 
 ---
+
+## 7. Onboarding & Tutorial Prompts
+
+These prompts are shown to new users during the app's onboarding slides to introduce key features.
+
+### 7.1 Slide 1: Login
+
+**Purpose:** Introduces users to login options.
+
+**Usage Context:**
+- First onboarding slide
+- Explains authentication options
+
+**Title:**
+```
+Log in
+```
+
+**Description:**
+```
+Log in on the app using a SUSI.AI account, sign up to create a new account or just skip logging in altogether.
+```
+
+**Resource IDs:** `slide_1_title`, `slide_1_desc`
+**File Location:** `/app/src/main/res/values/strings.xml:411-412`
+
+---
+
+### 7.2 Slide 2: Chat Interface
+
+**Purpose:** Introduces the main chat interface and voice interaction.
+
+**Usage Context:**
+- Second onboarding slide
+- Explains how to interact with SUSI
+
+**Title:**
+```
+Chat Interface
+```
+
+**Description:**
+```
+Interact with SUSI.AI by asking questions. Use the microphone button for voice interaction.
+```
+
+**Resource IDs:** `slide_2_title`, `slide_2_desc`
+**File Location:** `/app/src/main/res/values/strings.xml:413-414`
+
+---
+
+### 7.3 Slide 3: Skill List
+
+**Purpose:** Introduces the skills browsing feature.
+
+**Usage Context:**
+- Third onboarding slide
+- Explains skills discovery
+
+**Title:**
+```
+Skill List
+```
+
+**Description:**
+```
+Browse and try your favorite SUSI.AI skill
+```
+
+**Resource IDs:** `slide_3_title`, `slide_3_desc`
+**File Location:** `/app/src/main/res/values/strings.xml:415-416`
+
+---
+
+### 7.4 Slide 4: Chat Settings
+
+**Purpose:** Introduces personalization options.
+
+**Usage Context:**
+- Fourth onboarding slide
+- Explains settings customization
+
+**Title:**
+```
+Chat Settings
+```
+
+**Description:**
+```
+Personalize your chat settings for better experience.
+```
+
+**Resource IDs:** `slide_4_title`, `slide_4_desc`
+**File Location:** `/app/src/main/res/values/strings.xml:417-418`
+
+---
+
+## 8. Help & Instruction Prompts
+
+These prompts provide detailed instructions for common user tasks and questions.
+
+### 8.1 How to Use SUSI Voice
+
+**Question:**
+```
+How to use SUSI voice?
+```
+
+**Answer:**
+```
+To use SUSI voice click on the microphone symbol present in the bottom right corner of the chats page. You can ask anything to SUSI here. To change various voice settings, go to Settings page and configure SUSI voice accordingly.
+```
+
+**Resource IDs:** `help_susi_voice`, `help_susi_voice_desc`
+**File Location:** `/app/src/main/res/values/strings.xml:514-515`
+
+---
+
+### 8.2 What Skills Does SUSI Have
+
+**Question:**
+```
+What skills do SUSI have?
+```
+
+**Answer:**
+```
+To know about the skills that SUSI posses move to 'SUSI.AI Skills' page. You can reach there just by clicking on the 'SUSI' logo present at the top right corner of the Chat page.
+```
+
+**Resource IDs:** `help_susi_skills`, `help_susi_skills_desc`
+**File Location:** `/app/src/main/res/values/strings.xml:516-517`
+
+---
+
+### 8.3 How to Change SUSI Voice
+
+**Question:**
+```
+How to change SUSI voice ?
+```
+
+**Answer:**
+```
+In order to change voice and pitch of Susi, go to 'Settings ' and scroll down until you find 'Click here to change SUSI voice' and change voice according to your preference.
+```
+
+**Resource IDs:** `help_susi_changevoice`, `help_susi_changevoice_desc`
+**File Location:** `/app/src/main/res/values/strings.xml:518-519`
+
+---
+
+### 8.4 How to Open Settings
+
+**Question:**
+```
+How to open 'Settings'?
+```
+
+**Answer:**
+```
+In the main page click on SUSI logo present at the top right corner. This will open a page. Click on the 3 dot present at top right corner. From the menu that open click on 'Settings'
+```
+
+**Resource IDs:** `help_open_setting`, `help_open_setting_desc`
+**File Location:** `/app/src/main/res/values/strings.xml:504-505`
+
+---
+
+### 8.5 How to Sign Up
+
+**Question:**
+```
+How to SignUp in SUSI.AI?
+```
+
+**Answer:**
+```
+In the Login page click on 'Sign Up for SUSI'.
+ * Enter your email address.
+ * Enter your password and confirm it
+ After this click on 'SIGN UP'
+```
+
+**Resource IDs:** `help_signup`, `help_signup_desc`
+**File Location:** `/app/src/main/res/values/strings.xml:506-507`
+
+---
+
+### 8.6 How to Change Password
+
+**Question:**
+```
+How to change Password?
+```
+
+**Answer:**
+```
+ * Open the 'Settings' page.
+ * Scroll down and click on 'Reset Password'.
+ * Enter your current password and after that entire your new password.
+ * Click on 'OK'.
+```
+
+**Resource IDs:** `help_change_password`, `help_change_password_desc`
+**File Location:** `/app/src/main/res/values/strings.xml:508-509`
+
+---
+
+### 8.7 How to Report an Issue
+
+**Question:**
+```
+How to report an issue?
+```
+
+**Answer:**
+```
+Open the 'About Us' page. Under the 'Report Issues' section click on  'Github Repository Issue Tracker'. This will redirect you to a webpage where you can put up your issue by clicking on 'New Issue'.
+```
+
+**Resource IDs:** `help_report_issue`, `help_report_issue_desc`
+**File Location:** `/app/src/main/res/values/strings.xml:510-511`
+
+---
+
+### 8.8 How to Login (After Skipping)
+
+**Question:**
+```
+How to login, if you have opened SUSI without logging in?
+```
+
+**Answer:**
+```
+Open 'Settings' page and scroll down to the bottom. Click on 'Login'. This will redirect you to the login page.
+```
+
+**Resource IDs:** `help_login`, `help_login_desc`
+**File Location:** `/app/src/main/res/values/strings.xml:512-513`
+
+---
+
+## 9. About SUSI Description
+
+This is the main description of what SUSI.AI is, used in the About section of the app.
+
+**Purpose:** Explains SUSI.AI's capabilities and nature to users.
+
+**Usage Context:**
+- Displayed in the About Us section
+- Helps users understand what SUSI can do
+
+**Prompt:**
+```
+SUSI.AI is an intelligent libre software personal assistant. It is capable of chat and voice interaction by using APIs to perform actions such as music playback, making to-do lists, setting alarms, streaming podcasts, playing audiobooks, and providing weather, traffic, and other real time information. Additional functionalities can be added as console services using external APIs. SUSI.AI is able to answer questions and depending on the context will ask for additional information in order to perform the desired outcome. The core of the assistant is the SUSI.AI server that holds the "intelligence" and "personality" of SUSI.AI.
+```
+
+**Resource ID:** `susi_about`
+**File Location:** `/app/src/main/res/values/strings.xml:355`
+
+---
+
+## Summary
+
+This documentation covers all user-facing prompts in the SUSI.AI Android application organized into 9 main categories:
+
+1. **Voice Interaction Prompts** - Voice greetings and input instructions
+2. **User Input Prompts** - Chat interface guidance
+3. **Skill Discovery Prompts** - Metric-based skill queries
+4. **Example Voice Commands** - Sample commands to demonstrate capabilities
+5. **Error Handling Prompts** - Error messages and troubleshooting
+6. **Device Setup Prompts** - Smart speaker configuration instructions
+7. **Onboarding & Tutorial Prompts** - First-time user guidance
+8. **Help & Instruction Prompts** - Detailed how-to guides
+9. **About SUSI Description** - Core product description
+
+All prompts are localized and available in multiple languages including English, German, Spanish, Italian, Hindi, Tamil, Malayalam, and Portuguese (Brazilian).

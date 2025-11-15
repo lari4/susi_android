@@ -414,3 +414,315 @@ User → Enable hotword → Device incompatible
 - `/app/src/main/assets/snowboy/` - Hotword detection models
 
 ---
+
+## Pipeline 3: Response Processing Pipeline
+
+This pipeline shows how SUSI server responses are parsed and rendered based on their action types.
+
+### Flow Diagram
+
+```
+┌─────────────────────────────────────────────────────────────────────────┐
+│                    RESPONSE PROCESSING PIPELINE                          │
+└─────────────────────────────────────────────────────────────────────────┘
+
+Server Response         ParseSusiResponseHelper      ChatActivity (UI)
+       │                          │                           │
+       │  SusiResponse JSON       │                           │
+       ├─────────────────────────>│                           │
+       │  {                       │                           │
+       │    "answers": [{         │                           │
+       │      "actions": [        │ 1. Extract action type    │
+       │        {"type": "..."}   │    from response          │
+       │      ]                   │                           │
+       │    }]                    │                           │
+       │  }                       │                           │
+       │                          │                           │
+       │                          │ 2. Switch on actionType   │
+       │                          │                           │
+       ├──────────────────────────┴───────────────────────────┤
+       │                                                       │
+       │  ACTION TYPE ROUTING:                                │
+       │  ┌─────────────────────────────────────────────────┐ │
+       │  │                                                 │ │
+       │  │  type: "answer"                                 │ │
+       │  │  ├──> Extract expression                        │ │
+       │  │  ├──> Extract URLs from data                    │ │
+       │  │  └──> Display text + links                      │ │
+       │  │       → ChatMessageViewHolder (text bubble)     │ │
+       │  │                                                 │ │
+       │  │  type: "table"                                  │ │
+       │  │  ├──> Extract columns map                       │ │
+       │  │  ├──> Extract data rows                         │ │
+       │  │  ├──> Build TableItem                           │ │
+       │  │  └──> Display table view                        │ │
+       │  │       → ChatMessageViewHolder (table layout)    │ │
+       │  │                                                 │ │
+       │  │  type: "map"                                    │ │
+       │  │  ├──> Extract latitude                          │ │
+       │  │  ├──> Extract longitude                         │ │
+       │  │  ├──> Extract zoom level                        │ │
+       │  │  └──> Display map                               │ │
+       │  │       → MapData → MapView                       │ │
+       │  │                                                 │ │
+       │  │  type: "videoplay"                              │ │
+       │  │  ├──> Extract video identifier (YouTube ID)     │ │
+       │  │  └──> Display video player                      │ │
+       │  │       → YouTubePlayerView                       │ │
+       │  │                                                 │ │
+       │  │  type: "audioplay"                              │ │
+       │  │  ├──> Extract audio identifier (URL)            │ │
+       │  │  └──> Display audio player                      │ │
+       │  │       → MediaPlayer controls                    │ │
+       │  │                                                 │ │
+       │  │  type: "anchor"                                 │ │
+       │  │  ├──> Extract link URL                          │ │
+       │  │  ├──> Extract link text                         │ │
+       │  │  └──> Display clickable link                    │ │
+       │  │       → HTML anchor <a href="...">              │ │
+       │  │                                                 │ │
+       │  │  type: "stop"                                   │ │
+       │  │  └──> Stop ongoing playback                     │ │
+       │  │       → Stop MediaPlayer / YouTube              │ │
+       │  │                                                 │ │
+       │  └─────────────────────────────────────────────────┘ │
+       │                          │                           │
+       │                          │ 3. Create ChatArgs        │
+       │                          │    with parsed data       │
+       │                          │                           │
+       │                          │ 4. Save to database       │
+       │                          │    DatabaseRepository     │
+       │                          │                           │
+       │                          │ 5. Notify UI to update    │
+       │                          ├──────────────────────────>│
+       │                          │                           │
+       │                          │                           │ 6. Render in
+       │                          │                           │    RecyclerView
+       │                          │                           │
+```
+
+### Action Type Details
+
+#### ANSWER - Text Response
+**Purpose:** Display simple text answers from SUSI
+
+**Parsing Logic:** (`ParseSusiResponseHelper.kt:42-60`)
+```kotlin
+answer = susiResponse.answers[0].actions[i].expression
+// Extract embedded URLs
+val text = susiResponse.answers[0].data[0].get("object")
+val urlList = extractUrls(text)
+if (urlList.isNotEmpty()) {
+    answer += "\n" + urlList[0]
+}
+```
+
+**Example Response:**
+```json
+{
+  "expression": "The weather is sunny today.",
+  "data": [{"object": "Check https://weather.com for details"}]
+}
+```
+
+**Rendered As:** Text message with clickable URL
+
+---
+
+#### TABLE - Tabular Data
+**Purpose:** Display structured data in table format
+
+**Parsing Logic:** (`ParseSusiResponseHelper.kt:92-115`)
+```kotlin
+val listColumn = ArrayList<String>()      // Column names
+val listColVal = ArrayList<String>()      // Column display values
+val listTableData = ArrayList<String>()   // Row data
+
+susiResponse.answers.forEach { answer ->
+    answer.actions.forEach { action ->
+        action.columns?.forEach { entry ->
+            listColumn.add(entry.key)
+            listColVal.add(entry.value.toString())
+        }
+    }
+    answer.data.forEach {
+        listColumn.forEach { i ->
+            listTableData.add(it[i].toString())
+        }
+    }
+}
+tableData = TableItem(listColVal, listTableData)
+```
+
+**Example Use Case:**
+- Query: "Show me top programming languages"
+- Response: Table with columns [Language, Popularity, Year]
+
+**Rendered As:** RecyclerView with table layout
+
+---
+
+#### MAP - Geographic Location
+**Purpose:** Display location on a map
+
+**Parsing Logic:** (`ParseSusiResponseHelper.kt:62-70`)
+```kotlin
+val latitude = susiResponse.answers[0].actions[i].latitude
+val longitude = susiResponse.answers[0].actions[i].longitude
+val zoom = susiResponse.answers[0].actions[i].zoom
+MapData(latitude, longitude, zoom)
+```
+
+**Example Use Case:**
+- Query: "Where is Singapore?"
+- Response: Map centered on Singapore coordinates
+
+**Rendered As:** Google Maps view with marker
+
+---
+
+#### VIDEOPLAY - Video Playback
+**Purpose:** Play YouTube videos inline
+
+**Parsing Logic:** (`ParseSusiResponseHelper.kt:78-83`)
+```kotlin
+identifier = susiResponse.answers[0].actions[i].identifier
+// identifier is YouTube video ID (e.g., "dQw4w9WgXcQ")
+```
+
+**Example Use Case:**
+- Query: "Show me cat videos"
+- Response: YouTube player with video ID
+
+**Rendered As:** Embedded YouTube player
+
+**File Reference:** `YoutubeVid.kt` - YouTube player handler
+
+---
+
+#### AUDIOPLAY - Audio Playback
+**Purpose:** Play audio files or streams
+
+**Parsing Logic:** (`ParseSusiResponseHelper.kt:85-90`)
+```kotlin
+identifier = susiResponse.answers[0].actions[i].identifier
+// identifier is audio URL or stream
+```
+
+**Example Use Case:**
+- Query: "Play some music"
+- Response: Audio stream URL
+
+**Rendered As:** Audio player controls with play/pause/stop
+
+---
+
+#### ANCHOR - Web Links
+**Purpose:** Display clickable hyperlinks
+
+**Parsing Logic:** (`ParseSusiResponseHelper.kt:35-40`)
+```kotlin
+answer = "<a href=\"" +
+         susiResponse.answers[0].actions[i].anchorLink +
+         "\">" +
+         susiResponse.answers[0].actions[i].anchorText +
+         "</a>"
+```
+
+**Example:**
+- Link: `https://example.com`
+- Text: "Read more"
+- Rendered: [Read more](https://example.com)
+
+---
+
+#### STOP - Playback Control
+**Purpose:** Stop current media playback
+
+**Parsing Logic:** (`ParseSusiResponseHelper.kt:72-76`)
+```kotlin
+stop = susiResponse.answers[0].actions[1].type
+```
+
+**Example Use Case:**
+- Query: "Stop playing"
+- Response: Stops active audio/video
+
+---
+
+### Multi-Action Responses
+
+Server can return multiple actions in a single response:
+
+```json
+{
+  "answers": [{
+    "actions": [
+      {"type": "answer", "expression": "Here's a video about that:"},
+      {"type": "videoplay", "identifier": "dQw4w9WgXcQ"}
+    ]
+  }]
+}
+```
+
+**Processing:**
+```kotlin
+val actionSize = susiResponse.answers[0].actions.size
+for (i in 0 until actionSize) {
+    parseSusiResponse(susiResponse, i, error)
+    // Each action rendered sequentially
+}
+```
+
+**Result:** Text message followed by video player
+
+---
+
+### Error Handling
+
+**Empty Response:**
+```kotlin
+if (susiResponse.answers.isEmpty()) {
+    // Display: "Internet Connectivity Problem."
+}
+```
+
+**Parse Error:**
+```kotlin
+catch (e: Exception) {
+    Timber.e(e)
+    answer = error  // "An error occurred. please try again."
+}
+```
+
+**Unknown Action Type:**
+```kotlin
+else -> answer = error
+// Display error message for unrecognized types
+```
+
+### Database Persistence
+
+All parsed responses are saved to local Realm database:
+
+**ChatArgs Data Structure:**
+- `prevId` - ID of previous message (for linking)
+- `message` - Parsed text content
+- `date` - Response date from server
+- `timeStamp` - Local timestamp
+- `actionType` - Type of action (ANSWER, TABLE, MAP, etc.)
+- `mapData` - Map coordinates (if applicable)
+- `identifier` - Video/audio ID (if applicable)
+- `tableData` - Table structure (if applicable)
+
+**Purpose:**
+- Offline access to chat history
+- Fast scroll through previous conversations
+- Restore state after app restart
+
+### Key Files
+- `/app/src/main/java/org/fossasia/susi/ai/chat/ParseSusiResponseHelper.kt`
+- `/app/src/main/java/org/fossasia/susi/ai/data/db/DatabaseRepository.kt`
+- `/app/src/main/java/org/fossasia/susi/ai/chat/adapters/viewholders/ChatMessageViewHolder.kt`
+
+---

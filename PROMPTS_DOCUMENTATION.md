@@ -257,3 +257,80 @@ SUSI, what are your top games?
 **File Location:** `/app/src/main/res/values/strings.xml:492`
 
 ---
+
+## 4. Example Voice Commands
+
+These are sample commands displayed to users to demonstrate SUSI's capabilities. They are shown as clickable suggestions in the voice interface to help users understand what kinds of questions they can ask.
+
+**Usage Context:**
+- Displayed horizontally in the voice input screen (`STTfragment.kt:82-85`)
+- Shown as clickable chips/buttons that users can tap to quickly send a command
+- Help new users understand SUSI's capabilities
+- Defined as an array in `/app/src/main/res/values/array.xml:40-48`
+
+### Example Commands List:
+
+#### 4.1 Time Query
+**Prompt:**
+```
+What is the time now?
+```
+**Category:** Time & Date
+**Purpose:** Demonstrates SUSI can provide current time information
+
+---
+
+#### 4.2 Geography/Trivia Query
+**Prompt:**
+```
+Which is the largest country in the world?
+```
+**Category:** General Knowledge
+**Purpose:** Demonstrates SUSI can answer general knowledge questions
+
+---
+
+#### 4.3 App Control Command
+**Prompt:**
+```
+Open WhatsApp
+```
+**Category:** Device Control
+**Purpose:** Demonstrates SUSI can launch applications on the device
+
+---
+
+#### 4.4 Location Query
+**Prompt:**
+```
+Where is Singapore?
+```
+**Category:** Geography
+**Purpose:** Demonstrates SUSI can provide location and geographic information
+
+---
+
+#### 4.5 News Query
+**Prompt:**
+```
+Show me news headlines
+```
+**Category:** News & Information
+**Purpose:** Demonstrates SUSI can fetch and display current news
+
+---
+
+#### 4.6 Information Query
+**Prompt:**
+```
+Who is the president of India?
+```
+**Category:** Current Affairs / General Knowledge
+**Purpose:** Demonstrates SUSI can answer factual questions about world leaders
+
+---
+
+**Array Resource ID:** `voiceCommands`
+**File Location:** `/app/src/main/res/values/array.xml:40-48`
+
+---
